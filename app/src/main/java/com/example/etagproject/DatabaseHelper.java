@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " " + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, card_bar_code TEXT)"+";";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " " + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, card_bar_code TEXT NOT NULL)"+";";
         sqLiteDatabase.execSQL(createTable);
     }
 
@@ -35,37 +35,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME+";");
         onCreate(sqLiteDatabase);
     }
-    /*
-    // method to insert a record in Table
-    public static String insertEntry(String user_name, String user_phone, String user_email)
-    {
 
-        try {
-
-
-            ContentValues newValues = new ContentValues();
-            // Assign values for each column.
-            newValues.put("user_name", user_name);
-            newValues.put("user_phone", user_phone);
-            newValues.put("user_email", user_email);
-
-            // Insert the row into your table
-            db = dbHelper.getWritableDatabase();
-            long result=db.insert(TABLE_NAME, null, newValues);
-            toast("User Info Saved! Total Row Count is "+getRowCount());
-            db.close();
-
-        }catch(Exception ex) {
-        }
-        return "ok";
-    }
-
-     */
 
     public boolean addData(String itemTagName, String itemBarCode) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("ID", 1);
         contentValues.put("name", itemTagName);
         contentValues.put("card_bar_code", itemBarCode);
 

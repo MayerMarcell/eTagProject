@@ -16,9 +16,6 @@
         android:theme="@style/Theme.ETagProject"
         tools:targetApi="31">
         <activity
-            android:name=".addTagActivity"
-            android:exported="false" />
-        <activity
             android:name=".AddNewTag"
             android:exported="false" />
         <activity

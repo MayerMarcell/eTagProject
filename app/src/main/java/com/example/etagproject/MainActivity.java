@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -27,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonEdit;
     private ImageButton buttonAdd;
     private ListView tag_list;
-
+    private TextView txt_name;
+    private TextView txt_barcode;
     /////////////////////////////////////////onCreate///////////////////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         tag_list = (ListView) findViewById(R.id.tag_list);
         buttonEdit = (Button) findViewById(R.id.buttonEdit);
         buttonAdd = (ImageButton) findViewById(R.id.buttonAdd);
+        txt_name = findViewById(R.id.txt_name);
+        txt_barcode = findViewById(R.id.txt_barcode);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,12 +67,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void populateListView() {
+    public void populateListView() {
         Log.d(TAG, "populateListView: Displaying data in the ListView");
         Cursor data = mDatabaseHelper.getData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()){
-            listData.add(data.getString(2)); //azért 2 mert 0-tól indexel
+            listData.add(data.getString(1)); //azért 2 mert 0-tól indexel
         }
 
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
@@ -76,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
         tag_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+
+
+
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String name = adapterView.getItemAtPosition(i).toString();
                 Log.d(TAG, "onItemClick: You Clicked on " + name);
@@ -90,13 +97,23 @@ public class MainActivity extends AppCompatActivity {
                     Intent editScreenIntent = new Intent(MainActivity.this, EditTagActivity.class);
                     editScreenIntent.putExtra("id", itemID);
                     editScreenIntent.putExtra("name", name);
+                    txt_name.setText(adapterView.getItemAtPosition(i).toString());
+                    txt_barcode.setText(adapterView.getItemAtPosition(i).toString());
                     startActivity(editScreenIntent);
+
                 }else{
                     toastMessage("No ID associated with that name");
                 }
+
             }
 
 
+        });
+        buttonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //startActivity(editScreenIntent);
+            }
         });
 
         }

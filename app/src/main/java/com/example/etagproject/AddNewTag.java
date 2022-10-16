@@ -18,7 +18,7 @@ public class AddNewTag extends AppCompatActivity {
     private Button buttonSave;
     private EditText setTagName;
     private EditText setBarCode;
-
+    MainActivity mainActivity;
 
 
     @Override
@@ -35,7 +35,9 @@ public class AddNewTag extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddNewTag.this, MainActivity.class);
+                mainActivity.populateListView();
                 startActivity(intent);
+
             }
         });
 
@@ -43,33 +45,33 @@ public class AddNewTag extends AppCompatActivity {
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 String newEntryName = setTagName.getText().toString();
                 String newEntryBarCode = setBarCode.getText().toString();
-                if(setTagName.length()!=0 || setBarCode.length()!=0){
+                if (setTagName.length() != 0 || setBarCode.length() != 0) {
                     AddData(newEntryName, newEntryBarCode);
                     setTagName.setText("");
                     setBarCode.setText("");
-                }else{
+                } else {
                     toastMessage("You must írj something a textmezőbe!");
                 }
             }
         });
     }
 
-        public void toastMessage(String message){
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    public void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    public void AddData(String newEntryName, String newEntryBarCode) {
+        boolean insertData = mDatabaseHelper.addData(newEntryName, newEntryBarCode);
+
+        if (insertData) {
+            toastMessage("Data Successfully Inserted!");
+        } else {
+            toastMessage("Valami nem jo he");
         }
 
-        public void AddData(String newEntryName, String newEntryBarCode){
-            boolean insertData = mDatabaseHelper.addData(newEntryName, newEntryBarCode);
-
-            if(insertData){
-                toastMessage("Data Successfully Inserted!");
-            }else{
-                toastMessage("Valami nem jo he");
-            }
-
-        }
+    }
 
 }
