@@ -26,58 +26,89 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, card_bar_code TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " " + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, card_bar_code TEXT)"+";";
         sqLiteDatabase.execSQL(createTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME+";");
         onCreate(sqLiteDatabase);
     }
+    /*
+    // method to insert a record in Table
+    public static String insertEntry(String user_name, String user_phone, String user_email)
+    {
 
-    public boolean addData(String itemTagName, String itemBarCode){
+        try {
+
+
+            ContentValues newValues = new ContentValues();
+            // Assign values for each column.
+            newValues.put("user_name", user_name);
+            newValues.put("user_phone", user_phone);
+            newValues.put("user_email", user_email);
+
+            // Insert the row into your table
+            db = dbHelper.getWritableDatabase();
+            long result=db.insert(TABLE_NAME, null, newValues);
+            toast("User Info Saved! Total Row Count is "+getRowCount());
+            db.close();
+
+        }catch(Exception ex) {
+        }
+        return "ok";
+    }
+
+     */
+
+    public boolean addData(String itemTagName, String itemBarCode) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(itemTagName, itemBarCode);
+        contentValues.put("ID", 1);
+        contentValues.put("name", itemTagName);
+        contentValues.put("card_bar_code", itemBarCode);
 
-        Log.d(TAG, "addData: Adding " + itemTagName + " to " + TABLE_NAME);
+        System.out.println(TAG + "addData: Adding " + itemTagName + " to " + TABLE_NAME);
+
+//INSERT INTO tag_table (ID,name,card_bar_code)
+//VALUES (1, "teszt", "barcode");
 
         long result = sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
 
-        if(result==-1){
+        if (result == -1) {
             return false;
-        }else{
+        } else {
             return true;
         }
 
     }
 
-    public Cursor getData(){
+    public Cursor getData() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        String query = ("SELECT * FROM " + TABLE_NAME);
+        String query = ("SELECT * FROM " + TABLE_NAME+";");
         Cursor data = sqLiteDatabase.rawQuery(query, null);
         return data;
     }
 
-    public Cursor getItemID(String name){
+    public Cursor getItemID(String name) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "'";
+        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "'"+";";
         Cursor data = sqLiteDatabase.rawQuery(query, null);
         return data;
     }
 
-    public void updateTag(String newName, int id,String oldName){
+    public void updateTag(String newName, int id, String oldName) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         String query = "UPDATE " + TABLE_NAME + " SET " + COL2 +
                 " = '" + newName + "' WHERE " + COL1 + " = '" + id + "'" +
-                " AND " + COL2 + " = '" + oldName + "'";
+                " AND " + COL2 + " = '" + oldName + "'"+";";
         Log.d(TAG, "updateName: query: " + query);
         Log.d(TAG, "updateName: Setting name to " + newName);
         sqLiteDatabase.execSQL(query);
     }
 
-    public void deleteName(int id, String name){
+    public void deleteName(int id, String name) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         String query = "DELETE FROM " + TABLE_NAME + " WHERE "
                 + COL1 + " = '" + id + "'" +
