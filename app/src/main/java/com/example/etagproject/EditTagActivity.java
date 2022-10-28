@@ -27,6 +27,7 @@ public class EditTagActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.edit_tag_layout);
         buttonSaveModify = (Button) findViewById(R.id.buttonSaveModify);
         buttonDelete = (Button) findViewById(R.id.buttonDelete);

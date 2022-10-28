@@ -24,6 +24,7 @@ public class AddNewTag extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_add_new_tag);
         imageButtonGoBack = (ImageButton) findViewById(R.id.imageButtonGoBack);
         setTagName = (EditText) findViewById(R.id.setTagName);
