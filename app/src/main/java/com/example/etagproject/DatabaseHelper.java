@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
@@ -70,6 +69,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "'"+";";
         Cursor data = sqLiteDatabase.rawQuery(query, null);
         return data;
+    }
+
+    public boolean itemExists(String name){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "'"+";";
+        Cursor data = sqLiteDatabase.rawQuery(query, null);
+        return true;
     }
 
     public void updateTag(String newName, int id, String oldName) {

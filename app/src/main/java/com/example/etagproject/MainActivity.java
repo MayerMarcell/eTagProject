@@ -22,6 +22,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
         populateListView();
 
+
+
         /*buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,12 +103,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(itemID > -1){
                     Log.d(TAG, "onItemClick: The ID id: " + itemID);
-                    Intent editScreenIntent = new Intent(MainActivity.this, EditTagActivity.class);
-                    editScreenIntent.putExtra("id", itemID);
-                    editScreenIntent.putExtra("name", name);
+                    //Intent editScreenIntent = new Intent(MainActivity.this, EditTagActivity.class);
+                    //editScreenIntent.putExtra("id", itemID);
+                    //editScreenIntent.putExtra("name", name);
                     txt_name.setText(adapterView.getItemAtPosition(i).toString());
                     txt_barcode.setText(adapterView.getItemAtPosition(i).toString());
-                    startActivity(editScreenIntent);
+                    //startActivity(editScreenIntent);
 
                 }else{
                     toastMessage("No ID associated with that name");
