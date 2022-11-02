@@ -1,12 +1,18 @@
 package com.example.etagproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
+
         //editText = (EditText) findViewById(R.id.editTag);
         tag_list = (ListView) findViewById(R.id.tag_list);
         buttonEdit = (Button) findViewById(R.id.buttonEdit);
@@ -54,13 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
         populateListView();
 
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
+        /*buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddNewTag.class);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     public void openAddNewTag(){
@@ -73,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor data = mDatabaseHelper.getData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()){
-            listData.add(data.getString(1)); //azért 2 mert 0-tól indexel
+            listData.add(data.getString(1));
         }
 
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
@@ -81,9 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
         tag_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-
-
-
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String name = adapterView.getItemAtPosition(i).toString();
                 Log.d(TAG, "onItemClick: You Clicked on " + name);

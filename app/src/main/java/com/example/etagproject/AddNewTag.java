@@ -25,7 +25,7 @@ public class AddNewTag extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_add_new_tag);
+        setContentView(R.layout.add_new_tag);
         imageButtonGoBack = (ImageButton) findViewById(R.id.imageButtonGoBack);
         setTagName = (EditText) findViewById(R.id.setTagName);
         setBarCode = (EditText) findViewById(R.id.setBarCode);
@@ -35,9 +35,7 @@ public class AddNewTag extends AppCompatActivity {
         imageButtonGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddNewTag.this, MainActivity.class);
-                mainActivity.populateListView();
-                startActivity(intent);
+                openMainActivity();
 
             }
         });
@@ -54,10 +52,16 @@ public class AddNewTag extends AppCompatActivity {
                     setTagName.setText("");
                     setBarCode.setText("");
                 } else {
-                    toastMessage("You must írj something a textmezőbe!");
+                    toastMessage("You must write something to a textboxes!");
                 }
             }
         });
+    }
+
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        //mainActivity.populateListView();
+        startActivity(intent);
     }
 
     public void toastMessage(String message) {
@@ -70,7 +74,7 @@ public class AddNewTag extends AppCompatActivity {
         if (insertData) {
             toastMessage("Data Successfully Inserted!");
         } else {
-            toastMessage("Valami nem jo he");
+            toastMessage("Something went wrong!");
         }
 
     }
