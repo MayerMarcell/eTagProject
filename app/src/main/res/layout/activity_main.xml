@@ -9,14 +9,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="411dp"
-        android:layout_height="849dp"
+        android:layout_height="891dp"
         android:background="@color/main_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="395dp"
@@ -110,16 +109,16 @@
                     <TextView
                         android:id="@+id/txt_name"
                         android:layout_width="111dp"
-                        android:layout_height="62dp"
-                        android:text="Name"
+                        android:layout_height="60dp"
+                        android:text="Name of Tag"
                         app:layout_constraintStart_toStartOf="@+id/space"
                         app:layout_constraintTop_toTopOf="@+id/space" />
 
                     <TextView
                         android:id="@+id/txt_barcode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="barcode"
+                        android:layout_width="111dp"
+                        android:layout_height="60dp"
+                        android:text="Barcode"
                         app:layout_constraintStart_toStartOf="@+id/space"
                         app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
