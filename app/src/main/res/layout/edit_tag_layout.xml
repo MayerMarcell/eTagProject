@@ -7,8 +7,8 @@
     android:background="@color/main_bg">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="391dp"
-        android:layout_height="827dp"
+        android:layout_width="411dp"
+        android:layout_height="890dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -17,36 +17,59 @@
 
         <EditText
             android:id="@+id/editTagName"
-            android:layout_width="231dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="180dp"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="64dp"
             android:background="@color/white"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Name"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/buttonSaveModify"
-            android:layout_width="194dp"
+            android:layout_width="0dp"
             android:layout_height="55dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@color/blue"
             android:text="Save"
+            app:layout_constraintEnd_toStartOf="@+id/buttonDelete"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTagName" />
 
         <Button
             android:id="@+id/buttonDelete"
-            android:layout_width="166dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="12dp"
             android:backgroundTint="@color/blue"
             android:text="Delete"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintHorizontal_bias="0.407"
             app:layout_constraintStart_toEndOf="@+id/buttonSaveModify"
             app:layout_constraintTop_toBottomOf="@+id/editTagName" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Modify the Tag name"
+            app:layout_constraintBottom_toTopOf="@+id/editTagName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,8 +38,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    public String selectedTagName;
+    public String selectedTagId;
 
+    private static final String TAG = "MainActivity";
     DatabaseHelper mDatabaseHelper;
 
     private Button buttonEdit;
@@ -115,11 +117,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(itemID > -1){
                     Log.d(TAG, "onItemClick: The ID id: " + itemID);
-                    //Intent editScreenIntent = new Intent(MainActivity.this, EditTagActivity.class);
+
                     //editScreenIntent.putExtra("id", itemID);
                     //editScreenIntent.putExtra("name", name);
                     txt_name.setText(adapterView.getItemAtPosition(i).toString());
                     txt_barcode.setText(adapterView.getItemAtPosition(i).toString());
+                    selectedTagName = txt_name.toString();
+                    selectedTagId = txt_barcode.toString();
                     //startActivity(editScreenIntent);
 
                 }else{
@@ -133,7 +137,8 @@ public class MainActivity extends AppCompatActivity {
         buttonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(editScreenIntent);
+                Intent editScreenIntent = new Intent(MainActivity.this, EditTagActivity.class);
+                startActivity(editScreenIntent);
             }
         });
 

@@ -9,10 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-//TODO editTagName megvan, editBarCode kell még az előző alapján
-//TODO kommunikáció nem valósul meg a DB-vel
-//TODO design nem prioritás, a lényeg hogy fusson.
-//TODO db kommunikáció miatt nem tölt be a side scrollview onnan kell majd kiválasztani az aktuális taget
+
 public class EditTagActivity extends AppCompatActivity {
 
     private static final String TAG = "EditTagActivity";
