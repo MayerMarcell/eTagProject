@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
+
 
 public class AddNewTag extends AppCompatActivity {
     private static final String TAG = "AddNewTag";
@@ -26,6 +28,7 @@ public class AddNewTag extends AppCompatActivity {
     private EditText setBarCode;
     private ImageButton scanWithCamera;
     MainActivity mainActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
