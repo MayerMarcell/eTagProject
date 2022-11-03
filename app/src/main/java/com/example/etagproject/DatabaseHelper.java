@@ -74,7 +74,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean itemExists(String name){
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         Cursor data = sqLiteDatabase.rawQuery("SELECT "+ COL2 +" FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "'"+";", null);
-        Log.d(TAG, "______DATA_____ " + data.moveToFirst());
         return data.moveToFirst();
     }
 
