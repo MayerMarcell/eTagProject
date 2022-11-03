@@ -47,8 +47,10 @@ public class AddNewTag extends AppCompatActivity {
             public void onClick(View view) {
                 String newEntryName = setTagName.getText().toString();
                 String newEntryBarCode = setBarCode.getText().toString();
+
                 if (mDatabaseHelper.itemExists(newEntryName)) {
                     toastMessage("This name is already exists!");
+
                 } else if (setTagName.length() != 0 || setBarCode.length() != 0) {
                     AddData(newEntryName, newEntryBarCode);
                     setTagName.setText("");

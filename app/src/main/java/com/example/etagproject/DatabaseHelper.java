@@ -72,10 +72,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean itemExists(String name){
-        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        String query = "SELECT " + COL1 + " FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "'"+";";
-        Cursor data = sqLiteDatabase.rawQuery(query, null);
-        return true;
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor data = sqLiteDatabase.rawQuery("SELECT "+ COL2 +" FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + name + "'"+";", null);
+        Log.d(TAG, "______DATA_____ " + data.moveToFirst());
+        return data.moveToFirst();
     }
 
     public void updateTag(String newName, int id, String oldName) {
