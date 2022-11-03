@@ -8,6 +8,8 @@ import androidx.core.view.WindowInsetsControllerCompat;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,13 +20,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+
 import java.util.ArrayList;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView tag_list;
     private TextView txt_name;
     private TextView txt_barcode;
+    private ImageView imageViewResult;
     /////////////////////////////////////////onCreate///////////////////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         buttonAdd = (ImageButton) findViewById(R.id.buttonAdd);
         txt_name = findViewById(R.id.txt_name);
         txt_barcode = findViewById(R.id.txt_barcode);
+        imageViewResult = findViewById(R.id.imageViewResult);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,6 +139,25 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    public void barCodeButton(View view){
+        MultiFormatWriter barCodeWriter = new MultiFormatWriter();
+        try {
+            BitMatrix barCodeMatrix = barCodeWriter.encode(txt_barcode.getText().toString(), BarcodeFormat.CODE_128, imageViewResult.getWidth(), imageViewResult.getHeight());
+
+            Bitmap bitmap = Bitmap.createBitmap(imageViewResult.getWidth(), imageViewResult.getHeight(), Bitmap.Config.RGB_565);
+            for(int i = 0; i < imageViewResult.getWidth();i++){
+                for (int j = 0; j < imageViewResult.getHeight();j++){
+                    bitmap.setPixel(i,j,barCodeMatrix.get(i,j)? Color.BLACK:Color.WHITE);
+                }
+            }
+            imageViewResult.setImageBitmap(bitmap);
+
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 
     private void toastMessage(String message){
