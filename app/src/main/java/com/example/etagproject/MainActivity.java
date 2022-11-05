@@ -65,12 +65,8 @@ public class MainActivity extends AppCompatActivity {
         txt_name = findViewById(R.id.txt_name);
         txt_barcode = findViewById(R.id.txt_barcode);
         imageViewResult = findViewById(R.id.imageViewResult);
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openAddNewTag();
-            }
-        });
+
+        buttonAdd.setOnClickListener(view -> openAddNewTag());
 
         buttonEdit = (Button) findViewById(R.id.buttonEdit);
         mDatabaseHelper = new DatabaseHelper(this);
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
     }
-////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
     public void openAddNewTag(){
         Intent intent = new Intent(this, AddNewTag.class);
         startActivity(intent);
@@ -97,41 +93,39 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "populateListView: Displaying data in the ListView");
         Cursor data = mDatabaseHelper.getData();
         ArrayList<String> listData = new ArrayList<>();
+        ArrayList<String> showlistData = new ArrayList<>();
         while(data.moveToNext()){
             listData.add(data.getString(1));
+            showlistData.add(data.getString(2));
         }
-
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         tag_list.setAdapter(adapter);
 
-        tag_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String name = adapterView.getItemAtPosition(i).toString();
-                Log.d(TAG, "onItemClick: You Clicked on " + name);
 
-                Cursor data = mDatabaseHelper.getItemID(name);
-                int itemID = -1;
-                while(data.moveToNext()){
-                    itemID = data.getInt(0);
-                }
-                if(itemID > -1){
-                    Log.d(TAG, "onItemClick: The ID id: " + itemID);
+        tag_list.setOnItemClickListener((adapterView, view, i, l) -> {
+            String name = adapterView.getItemAtPosition(i).toString();
+            //String barcode = adapterView.getItemAtPosition(i).toString();
+            Log.d(TAG, "onItemClick: You Clicked on " + name);
 
-                    //editScreenIntent.putExtra("id", itemID);
-                    //editScreenIntent.putExtra("name", name);
-                    txt_name.setText(adapterView.getItemAtPosition(i).toString());
-                    txt_barcode.setText(adapterView.getItemAtPosition(i).toString());
-                    selectedTagName = txt_name.toString();
-                    selectedTagId = txt_barcode.toString();
-                    //startActivity(editScreenIntent);
-
-                }else{
-                    toastMessage("No ID associated with that name");
-                }
-
+            Cursor data1 = mDatabaseHelper.getItemID(name);
+            int itemID = -1;
+            while(data1.moveToNext()){
+                itemID = data1.getInt(0);
             }
+            if(itemID > -1){
+                Log.d(TAG, "onItemClick: The ID id: " + itemID);
 
+                //editScreenIntent.putExtra("id", itemID);
+                //editScreenIntent.putExtra("name", name);
+                txt_name.setText(listData.get(i));
+                txt_barcode.setText(showlistData.get(i));
+                selectedTagName = txt_name.toString();
+                selectedTagId = txt_barcode.toString();
+                //startActivity(editScreenIntent);
+
+            }else{
+                toastMessage("No ID associated with that name");
+            }
 
         });
         buttonEdit.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        }
+    }
 
     public void barCodeButton(View view){
         MultiFormatWriter barCodeWriter = new MultiFormatWriter();

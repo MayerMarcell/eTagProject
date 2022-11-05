@@ -65,7 +65,6 @@ public class AddNewTag extends AppCompatActivity {
 
     private void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
-        //mainActivity.populateListView();
         startActivity(intent);
     }
 
