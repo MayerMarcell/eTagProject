@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="180dp"
             android:layout_marginEnd="64dp"
             android:background="@color/white"
             android:ems="10"
@@ -58,7 +58,7 @@
             app:layout_constraintStart_toEndOf="@+id/buttonSaveModify"
             app:layout_constraintTop_toBottomOf="@+id/editTagName" />
 
-        <EditText
+        <TextView
             android:id="@+id/editTextTextPersonName"
             android:layout_width="0dp"
             android:layout_height="48dp"
@@ -68,8 +68,12 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Modify the Tag name"
+            android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/editTagName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.etagproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +37,7 @@ public class EditTagActivity extends AppCompatActivity {
         Intent receivedIntent = getIntent();
         selectedID = receivedIntent.getIntExtra("id", -1);
         selectedTagName = receivedIntent.getStringExtra("name");
+        Log.d(TAG, "Selected data: "+selectedID+" "+selectedTagName);
         //selectedBarCode = receivedIntent.getStringExtra("bar_code");
         editTagName.setText(selectedTagName);
         //editBarCode.setText(selectedBarCode);
@@ -45,6 +47,8 @@ public class EditTagActivity extends AppCompatActivity {
                 String item = editTagName.getText().toString();
                 if(!item.equals("")) {
                     mDatabaseHelper.updateTag(item,selectedID,selectedTagName);
+                    openMainActivity();
+
                 }else{
                       toastMessage("You must enter a name!");
                     }
@@ -58,11 +62,18 @@ public class EditTagActivity extends AppCompatActivity {
                 mDatabaseHelper.deleteName(selectedID,selectedTagName);
                 editTagName.setText("");
                 toastMessage("Removed from database");
+                openMainActivity();
             }
         });
 
 
     }
+
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();

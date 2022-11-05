@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:circularflow_radiusInDP="900dp"
+    app:circularflow_radiusInDP="9dp"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,7 +59,7 @@
                         android:id="@+id/buttonBC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="2dp"
+                        android:layout_marginEnd="20dp"
                         android:backgroundTint="@color/blue"
                         android:onClick="barCodeButton"
                         android:text="Bar Code"
@@ -71,13 +71,18 @@
 
                     <Button
                         android:id="@+id/buttonNFC"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="2dp"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="64dp"
+                        android:layout_marginTop="64dp"
+                        android:layout_marginEnd="64dp"
+                        android:layout_marginBottom="64dp"
                         android:backgroundTint="@color/blue"
                         android:text="NFC"
-                        app:cornerRadius="5pt"
-                        app:layout_constraintEnd_toStartOf="@+id/buttonQR"
+                        android:textSize="20sp"
+                        app:cornerRadius="90pt"
+                        app:layout_constraintBottom_toTopOf="@+id/buttonEdit"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/space" />
 
@@ -85,12 +90,12 @@
                         android:id="@+id/buttonQR"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="2dp"
+                        android:layout_marginStart="20dp"
                         android:backgroundTint="@color/blue"
+                        android:onClick="qrCodeButton"
                         android:text="QR"
                         app:cornerRadius="5pt"
-                        app:layout_constraintEnd_toStartOf="@+id/buttonBC"
-                        app:layout_constraintStart_toEndOf="@+id/buttonNFC"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/space" />
 
                     <Space
@@ -109,7 +114,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="100dp"
                         android:backgroundTint="@color/blue"
-                        android:text="Edit this "
+                        android:text="Edit Tag"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.491"
@@ -117,33 +122,43 @@
 
                     <TextView
                         android:id="@+id/txt_name"
-                        android:layout_width="111dp"
+                        android:layout_width="0dp"
                         android:layout_height="60dp"
-                        android:text="Name of Tag"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:text="The database is empty\nPlease add new tag!"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/space"
                         app:layout_constraintTop_toTopOf="@+id/space" />
 
                     <TextView
                         android:id="@+id/txt_barcode"
-                        android:layout_width="111dp"
+                        android:layout_width="0dp"
                         android:layout_height="60dp"
-                        android:layout_marginStart="4dp"
+                        android:layout_marginStart="12dp"
                         android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
                         android:text="Barcode"
-                        android:visibility="visible"
+                        android:textAlignment="center"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/space"
                         app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
                     <ImageView
                         android:id="@+id/imageViewResult"
-                        android:layout_width="280dp"
-                        android:layout_height="175dp"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="32dp"
                         app:layout_constraintBottom_toBottomOf="@+id/space"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.428"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/txt_name"
-                        app:layout_constraintVertical_bias="0.347" />
+                        app:layout_constraintVertical_bias="1.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
