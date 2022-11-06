@@ -33,7 +33,6 @@ public class EditTagActivity extends AppCompatActivity {
         //editBarCode = (EditText) findViewById(R.id.editBarCode);
         mDatabaseHelper = new DatabaseHelper(this);
 
-        //get the intent extra from the ListDataActivity
         Intent receivedIntent = getIntent();
         selectedID = receivedIntent.getIntExtra("id", -1);
         selectedTagName = receivedIntent.getStringExtra("name");

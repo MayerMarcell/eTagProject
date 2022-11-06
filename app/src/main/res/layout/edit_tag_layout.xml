@@ -69,6 +69,7 @@
             android:inputType="textPersonName"
             android:text="Modify the Tag name"
             android:textAlignment="center"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/editTagName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

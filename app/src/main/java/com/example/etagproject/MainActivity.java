@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
                 txt_barcode.setText(showlistData.get(i));
                 selectedTagName = txt_name.toString();
                 selectedTagId = txt_barcode.toString();
-                //startActivity(editScreenIntent);
                 barCodeButton(view);
 
                 buttonEdit.setOnClickListener(new View.OnClickListener() {
@@ -157,9 +156,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 
 
     public void barCodeButton(View view){

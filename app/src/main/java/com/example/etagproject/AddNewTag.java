@@ -20,7 +20,6 @@ public class AddNewTag extends AppCompatActivity {
     private EditText setBarCode;
     MainActivity mainActivity;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
