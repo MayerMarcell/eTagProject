@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     DatabaseHelper mDatabaseHelper;
-
+    NfcAdapter nfcAdapter;
     private Button buttonEdit;
     private ImageButton buttonAdd;
     private ListView tag_list;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         //editText = (EditText) findViewById(R.id.editTag);
         tag_list = (ListView) findViewById(R.id.tag_list);
         buttonEdit = (Button) findViewById(R.id.buttonEdit);
@@ -86,7 +87,9 @@ public class MainActivity extends AppCompatActivity {
             populateListView();
             selectFromListView();
         }
-
+        if(nfcAdapter == null || !nfcAdapter.isEnabled()){
+            toastMessage("NFC is not enabled or the device does not support it!");
+        }
 
         /*buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +154,19 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(editScreenIntent);
                     }
                 });
+
+                buttonNFC.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(nfcAdapter.isEnabled()==false){
+                            toastMessage("NFC is disabled, please enable it!");
+                        }else {
+                            toastMessage("NFC is active");
+                        }
+                    }
+                });
+
+
             }else{
                 toastMessage("No ID associated with that name");
             }

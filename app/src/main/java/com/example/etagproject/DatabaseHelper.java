@@ -44,9 +44,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         System.out.println(TAG + "addData: Adding " + itemTagName + " to " + TABLE_NAME);
 
-//INSERT INTO tag_table (ID,name,card_bar_code)
-//VALUES (1, "teszt", "barcode");
-
         long result = sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
 
         if (result == -1) {
