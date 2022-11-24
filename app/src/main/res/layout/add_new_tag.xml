@@ -116,7 +116,7 @@
             app:layout_constraintTop_toBottomOf="@+id/setTagName" />
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/scanWithCamera"
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginStart="128dp"
@@ -125,7 +125,7 @@
             android:backgroundTint="@color/dark_red"
             android:contentDescription="Camera"
             android:scaleType="fitCenter"
-            android:visibility="invisible"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
@@ -140,8 +140,8 @@
             android:text="Scan with camera"
             android:textAlignment="center"
             android:textSize="30sp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/imageButton2"
+
+            app:layout_constraintBottom_toTopOf="@+id/scanWithCamera"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/setBarCode" />
@@ -159,6 +159,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+            app:layout_constraintTop_toBottomOf="@+id/scanWithCamera" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
