@@ -83,6 +83,7 @@ public class AddNewTag extends AppCompatActivity {
         options.setBeepEnabled(true);
         options.setOrientationLocked(true);
         options.setCaptureActivity(CaptureAct.class);
+
         barLauncher.launch(options);
     }
     ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
@@ -90,6 +91,8 @@ public class AddNewTag extends AppCompatActivity {
             setBarCode.setText(result.getContents());
         }
     });
+
+
     private void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

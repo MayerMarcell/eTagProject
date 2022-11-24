@@ -90,7 +90,9 @@ public class MainActivity extends AppCompatActivity {
         if(nfcAdapter == null || !nfcAdapter.isEnabled()){
             toastMessage("NFC is not enabled or the device does not support it!");
         }
-
+        if(!listData.isEmpty()){
+            txt_name.setText("Please select something!");
+        }
         /*buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,9 +122,6 @@ public class MainActivity extends AppCompatActivity {
         tag_list.setAdapter(adapter);
         txt_name.setText(listData.get(0));
         txt_barcode.setText(showlistData.get(0));
-
-
-
     }
 
     public void selectFromListView(){
